@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+<table class="table table-dark table-striped">
+    <thead>
+    <tr>
+        <th scope="col">CONSULTA 3</th>
+        <th scope="col">nombre_cliente</th>
+        <th scope="col">nombre_contacto</th>
+        <th scope="col">apellido_contacto</th>
+        <th scope="col">telefono</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<script>
+    fetch('http://localhost:8080/ClienteNotNot')
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+            data.forEach(cliente => {
+                const tr = document.createElement('tr');
+                const td1 = document.createElement('td');
+                td1.textContent = cliente.codigo_cliente;
+                const td2 = document.createElement('td');
+                td2.textContent = cliente.nombre_cliente;
+                const td3 = document.createElement('td');
+                td3.textContent = cliente.nombre_contacto;
+                const td4 = document.createElement('td');
+                td4.textContent = cliente.apellido_contacto;
+                const td5 = document.createElement('td');
+                td5.textContent = cliente.telefono;
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+                tr.appendChild(td5);
+
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(error => console.error(error));
+</script>
+</body>
+</html>
